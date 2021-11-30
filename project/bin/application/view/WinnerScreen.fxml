@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #000040;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.WinnerScreenController">
+   <children>
+      <Label fx:id="TitleLabel" alignment="CENTER" layoutX="1.0" layoutY="9.0" prefHeight="69.0" prefWidth="500.0" text="Tic-Tac-Toe" textAlignment="CENTER" textFill="ORANGE">
+         <font>
+            <Font name="Bookman Old Style" size="52.0" />
+         </font>
+      </Label>
+      <Region layoutX="42.0" layoutY="86.0" prefHeight="342.0" prefWidth="416.0" style="-fx-border-color: orange; -fx-border-width: 4;;" />
+      <Label fx:id="displayWinnerTie" alignment="CENTER" layoutX="46.0" layoutY="91.0" prefHeight="334.0" prefWidth="408.0" textAlignment="CENTER" textFill="#ffb54e" textOverrun="CLIP" wrapText="true">
+         <font>
+            <Font name="Bookman Old Style" size="45.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
