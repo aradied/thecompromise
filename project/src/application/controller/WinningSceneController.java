@@ -1,3 +1,8 @@
+/*
+ * Displays information about the winner of whichever game they played
+ * displays images and gifs as well right whne the scene is displayed
+ */
+
 package application.controller;
 
 import java.io.FileInputStream;
@@ -38,7 +43,6 @@ public class WinningSceneController {
 	private Button HomeButton;
 	
 	
-	//handles click on home button and goes back to main screen
 	@FXML
 	void HandleHomeButton(ActionEvent event) throws IOException {
 		

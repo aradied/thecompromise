@@ -1,3 +1,7 @@
+/**
+ * The AddPersonController handles the popup for adding a person. 
+ */
+
 package application.controller;
 
 import java.util.ArrayList;
@@ -29,6 +33,7 @@ public class AddPersonController {
     @FXML
     private AnchorPane mainPane;
 
+    // Adds the name and place as a person to the person list
     @FXML
     void onClickAddButton(MouseEvent event) {
 
@@ -40,6 +45,7 @@ public class AddPersonController {
         window.close();
     }
 
+    // Cancels operation and closes popup
     @FXML
     void onClickCancelButton(MouseEvent event) {
 
@@ -47,6 +53,7 @@ public class AddPersonController {
         window.close(); 	
     }
     
+    // Gets the personList
     public void initializeData(ArrayList<Person> personList) {
     	
     	this.personList = personList;

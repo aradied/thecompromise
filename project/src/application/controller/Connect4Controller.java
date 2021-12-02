@@ -1,5 +1,9 @@
 package application.controller;
-
+/*
+ *Controller for the Control 4 game scene. Takes in the PlayerList and  uses the amount of players to run the game 
+ *for multiple rounds or if players want to change game they can chose to go back home screen. 
+ *Leads to the victory screen after all rounds are completed.
+ */
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

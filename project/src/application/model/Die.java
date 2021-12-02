@@ -1,3 +1,4 @@
+/* This set the die and what face the die lands on */
 package application.model;
 
 public class Die {

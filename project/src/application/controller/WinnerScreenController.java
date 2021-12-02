@@ -1,3 +1,6 @@
+/*
+ * Used for showing a pop up for a tie or a win in the TicTacToe game
+ */
 package application.controller;
 
 import javafx.fxml.FXML;
