@@ -1,3 +1,7 @@
+/*
+ * Class for creating and running the TicTacToe game. Holds the players, player information, and game information.
+ *  And will allow the implementation of multiple rounds.
+ */
 package application.model;
 
 import java.util.Random;

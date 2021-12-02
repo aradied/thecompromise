@@ -1,3 +1,11 @@
+/*
+ * This class handles the guessing game part of the application
+ * displays a input field for each player and takes their guesses 
+ * has button to generate a random number and compare inputs to number
+ * nothing happens if no one is correct until someone matches the answer
+ * sends winner information to winning scene
+ */
+
 package application.controller;
 
 import java.io.File;
@@ -23,6 +31,7 @@ import java.util.Random;
 import application.model.Person;
 
 public class RandomNumberGameController {
+
 	
 	private ArrayList<Person> personList;
 	
@@ -97,8 +106,8 @@ public class RandomNumberGameController {
     
     @FXML
     private Label WinningName;
-
-    //handles click on home button and goes back to main screen
+    
+    
     @FXML
     void handleHomeButton(ActionEvent event) throws IOException {
         	
@@ -106,7 +115,7 @@ public class RandomNumberGameController {
         	currWindow.close();
     }
 
-    //Generates random and compares the input of the user to the generated number then sends the user to winning scene
+    
     @FXML
     void HandleGenerateNumber(ActionEvent event) throws IOException {
     	Random rand = new Random();

@@ -1,3 +1,4 @@
+/*This class is the brain of the game. It sets the player and the current player. This also rolls the die*/
 package application.model;
 
 public class Game{

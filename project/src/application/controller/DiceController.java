@@ -1,3 +1,6 @@
+/*
+ * This is the controller that control the Die game. It also creates the animation for the dice
+ */
 package application.controller;
 import java.io.File;
 import java.io.IOException;

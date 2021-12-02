@@ -1,9 +1,11 @@
 /**
- * LoginController class shows the Login scene where the user 
- * inputs a username and password to login and advance to the next scene.
+ * MenuController handles the menu. It allows the user to 
+ * add and remove a person along with his/her wanted place.
+ * It also has a popup to select the games that the users wants
+ * to play when they click the select game button.
  * 
  * Fall 2021
- */
+ **/
 
 package application.controller;
 
@@ -61,6 +63,7 @@ public class MenuController implements Initializable {
     @FXML
     private Button selectButton;
     
+    // Opens a popup for selecting game
     @FXML
     void onClickSelectButton(MouseEvent event) {
 
@@ -90,6 +93,7 @@ public class MenuController implements Initializable {
         }
     }
     
+    // Opens a popup that allows the user to enter the name and place of the person being added
     @FXML
     void OnClickAddButton(MouseEvent event) throws InterruptedException {
 
@@ -129,12 +133,13 @@ public class MenuController implements Initializable {
         button.setBackground(new Background(new BackgroundFill(Color.color(Math.random(), Math.random(), Math.random()), null, null)));
         button.setFont(addButton.getFont());
         button.setText(("" + personList.get(personList.size()-1).getName().charAt(0)).toUpperCase());
-        
+        button.setId(personList.get(personList.size() -1 ).getName());
         button.setOnMouseClicked(new EventHandler<MouseEvent>(){	
         	
 			public void handle(MouseEvent event) {
 				
-				menuPane.getChildren().remove(event.getTarget());
+				personList.remove(findPerson(((Node)event.getSource()).getId()));
+				menuPane.getChildren().remove(event.getSource());
 				updateScreen(REMOVE);
 			}
 		});
@@ -264,7 +269,17 @@ public class MenuController implements Initializable {
     	
     	button.relocate(x - button.getPrefWidth() / 2, y - button.getPrefHeight() / 2);
     }
+    
+    // Finds a person
+    public Person findPerson(String name) {
+    	
+    	for(Person person: personList)
+    		if(person.getName().equals(name)) return person;
+    	
+    	return null;
+    }
  
+    // Initializes add button in scene
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 

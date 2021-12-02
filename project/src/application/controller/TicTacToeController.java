@@ -1,3 +1,7 @@
+/*
+ *Controller for the TicTacToe scene. Takes in the PlayerList and  uses the amount of players to run the TicTactoe.java 
+ * and run the game for multiple rounds; detecting ties and wins. Leads to the victory screen after game is completed.
+ */
 package application.controller;
 
 import java.io.File;
@@ -179,13 +183,13 @@ public class TicTacToeController {
     	if(game.getTurn()) {
     		if(game.checkValidMove(row, column)) {
     			game.addMove(row, column, 'X');
-    			playMoveSound();
+    			//playMoveSound();
     			fillSquare(row, column, "X");
     			if(game.checkWinner()) {
     				playerList.remove(1);
     				ScoreHolder.setText("Score: P1 - " + game.showP1Score() + " P2 - " + game.showP2Score() + " Ties - " + game.showTies());
     				turnText.setText(playerList.get(0).getName() + " is the winner!");
-    				playWinSound();
+    			//	playWinSound();
     				updateDisplay();
     			}
     			else if(game.checkTie()) {
@@ -202,13 +206,13 @@ public class TicTacToeController {
     	else {
     		if(game.checkValidMove(row, column)) {
     			game.addMove(row, column, 'O');
-    			playMoveSound();
+    			//playMoveSound();
     			fillSquare(row, column, "O");
     			if(game.checkWinner()) {
     				playerList.remove(0);
     				ScoreHolder.setText("Score: P1 - " + game.showP1Score() + " P2 - " + game.showP2Score() + " Ties - " + game.showTies());
     				turnText.setText(playerList.get(0).getName() + " is the winner!");
-    				playWinSound();
+    			//	playWinSound();
     				updateDisplay();
     			}
     			else if(game.checkTie()) {
@@ -258,20 +262,20 @@ public class TicTacToeController {
     	}
     }
     //play sounds for winning and for inputting a move
-    public void playWinSound() {
+   /* public void playWinSound() {
     	String musicFile = "start.mp3";
     	Media sound = new Media(new File("sounds/" + musicFile).toURI().toString());
     	MediaPlayer mediaPlayer = new MediaPlayer(sound);
     	mediaPlayer.setVolume(0.1);
     	mediaPlayer.play();
-    }
-    public void playMoveSound() {
+    }*/
+    /*public void playMoveSound() {
     	String musicFile = "move.mp3";
     	Media sound = new Media(new File("sounds/" + musicFile).toURI().toString());
     	MediaPlayer mediaPlayer = new MediaPlayer(sound);
     	mediaPlayer.setVolume(0.1);
     	mediaPlayer.play();
-    }
+    }*/
     //initialize the person arraylist
     public void initializeData(ArrayList<Person> personList) {
     	this.playerList = new ArrayList<Person>();

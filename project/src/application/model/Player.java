@@ -1,3 +1,5 @@
+/*This class creates the player and stores the current player score and total score of the die. 
+ * This also updates the player score*/
 package application.model;
 
 public class Player {
