@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.RandomNumberGameController">
+   <children>
+      <AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #000040; -fx-border-color: #ffffff; -fx-border-width: 2;;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Region layoutX="44.0" layoutY="111.0" prefHeight="668.0" prefWidth="680.0" style="-fx-border-color: orange; -fx-text-fill: 4;" AnchorPane.bottomAnchor="97.0" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="111.0" />
+            <Label alignment="CENTER" layoutX="30.0" layoutY="17.0" prefHeight="69.0" prefWidth="740.0" text="Guessing The Number" textAlignment="CENTER" textFill="ORANGE">
+               <font>
+                  <Font name="Bookman Old Style" size="52.0" />
+               </font>
+            </Label>
+            <Button fx:id="homeButton" layoutX="674.0" layoutY="724.0" mnemonicParsing="false" onAction="#handleHomeButton" style="-fx-background-color: orange;" text="Home">
+               <font>
+                  <Font name="Arial Black" size="22.0" />
+               </font>
+            </Button>
+            <TextField id="1" fx:id="player1guess" layoutX="131.0" layoutY="375.0" prefHeight="25.0" prefWidth="55.0" />
+            <TextField id="2" fx:id="player2guess" layoutX="254.0" layoutY="375.0" prefHeight="25.0" prefWidth="55.0" />
+            <TextField id="3" fx:id="player3guess" layoutX="373.0" layoutY="375.0" prefHeight="25.0" prefWidth="55.0" />
+            <TextField id="4" fx:id="player4guess" layoutX="488.0" layoutY="375.0" prefHeight="25.0" prefWidth="55.0" />
+            <TextField id="5" fx:id="player5guess" layoutX="605.0" layoutY="375.0" prefHeight="25.0" prefWidth="55.0" />
+            <TextField id="6" fx:id="player6guess" layoutX="131.0" layoutY="470.0" prefHeight="25.0" prefWidth="55.0" />
+            <TextField id="7" fx:id="player7guess" layoutX="254.0" layoutY="470.0" prefHeight="25.0" prefWidth="55.0" />
+            <TextField id="8" fx:id="player8guess" layoutX="373.0" layoutY="470.0" prefHeight="25.0" prefWidth="55.0" />
+            <TextField id="9" fx:id="player9guess" layoutX="488.0" layoutY="470.0" prefHeight="25.0" prefWidth="55.0" />
+            <TextField id="10" fx:id="player10guess" layoutX="605.0" layoutY="470.0" prefHeight="25.0" prefWidth="55.0" />
+            <Label id="6" fx:id="player6" layoutX="138.0" layoutY="434.0" text="Player 6" textFill="WHITE" />
+            <Label id="1" fx:id="player1" layoutX="138.0" layoutY="330.0" text="Player 1" textFill="WHITE" />
+            <Label id="2" fx:id="player2" layoutX="261.0" layoutY="330.0" text="Player 2" textFill="WHITE" />
+            <Label id="7" fx:id="player7" layoutX="261.0" layoutY="434.0" text="Player 7" textFill="WHITE" />
+            <Label id="8" fx:id="player8" layoutX="379.0" layoutY="434.0" text="Player 8" textFill="WHITE" />
+            <Label id="4" fx:id="player4" layoutX="495.0" layoutY="330.0" text="Player 4" textFill="WHITE" />
+            <Label id="9" fx:id="player9" layoutX="495.0" layoutY="434.0" text="Player 9" textFill="WHITE" />
+            <Label id="5" fx:id="player5" layoutX="612.0" layoutY="330.0" text="Player 5" textFill="WHITE" />
+            <Label id="10" fx:id="player10" layoutX="608.0" layoutY="434.0" text="Player 10" textFill="WHITE" />
+            <Label id="3" fx:id="player3" layoutX="379.0" layoutY="330.0" text="Player 3" textFill="WHITE" />
+            <Label layoutX="203.0" layoutY="267.0" text="Enter a number to guess between 0-20" textFill="WHITE">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="RandNumBox" layoutX="332.0" layoutY="124.0" prefHeight="117.0" prefWidth="138.0" style="-fx-background-color: #000040; -fx-text-fill: #ffa500;">
+               <font>
+                  <Font size="45.0" />
+               </font>
+            </TextArea>
+            <Label fx:id="WinningName" layoutX="251.0" layoutY="588.0" prefHeight="56.0" prefWidth="318.0" textAlignment="CENTER" textFill="ORANGE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Button layoutX="46.0" layoutY="726.0" mnemonicParsing="false" onAction="#HandleGenerateNumber" style="-fx-background-color: orange;" text="Generate Number" textFill="#000040" AnchorPane.bottomAnchor="26.0">
+               <font>
+                  <Font name="Arial Black" size="22.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

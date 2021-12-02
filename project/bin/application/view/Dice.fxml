@@ -26,9 +26,9 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <VBox layoutX="58.0" layoutY="270.0" prefHeight="103.0" prefWidth="333.0">
+      <VBox fx:id="player1box" layoutX="58.0" layoutY="270.0" prefHeight="103.0" prefWidth="333.0">
          <children>
-            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Player 1" textAlignment="CENTER" textFill="DARKORANGE">
+            <Label fx:id="player1Text" alignment="CENTER" maxWidth="1.7976931348623157E308" text="Player 1" textAlignment="CENTER" textFill="DARKORANGE">
                <font>
                   <Font size="29.0" />
                </font>
@@ -61,7 +61,7 @@
       </VBox>
       <VBox fx:id="player2box" layoutX="420.0" layoutY="263.0" prefHeight="103.0" prefWidth="333.0">
          <children>
-            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Player 2" textAlignment="CENTER" textFill="DARKORANGE">
+            <Label fx:id="player2Text" alignment="CENTER" maxWidth="1.7976931348623157E308" text="Player 2" textAlignment="CENTER" textFill="DARKORANGE">
                <font>
                   <Font size="29.0" />
                </font>
@@ -94,11 +94,11 @@
       </VBox>
       <HBox layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" />
       <Button fx:id="rollButton" layoutX="218.0" layoutY="451.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#spinAnim" prefHeight="27.0" prefWidth="165.0" text="Roll" />
-      <Button fx:id="holdButton" layoutX="414.0" layoutY="450.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="27.0" prefWidth="165.0" text="Next Player" />
+      <Button fx:id="holdButton" layoutX="420.0" layoutY="451.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="27.0" prefWidth="165.0" text="Next Player" />
       <ImageView fx:id="dieImage" fitHeight="100.0" fitWidth="100.0" layoutX="335.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="home" layoutX="344.0" layoutY="615.0" mnemonicParsing="false" text="Home">
+      <Button fx:id="homeButton" layoutX="321.0" layoutY="725.0" mnemonicParsing="false" onMouseClicked="#onClickHome" prefHeight="37.0" prefWidth="158.0" style="-fx-background-color: orange;" text="Home">
          <font>
-            <Font size="24.0" />
+            <Font name="Arial Black" size="22.0" />
          </font>
       </Button>
    </children>

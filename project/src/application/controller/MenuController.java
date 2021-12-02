@@ -59,25 +59,30 @@ public class MenuController implements Initializable {
     private Button addButton;
     
     @FXML
-    private Button nextButton;
+    private Button selectButton;
     
     @FXML
-    void onClickNext(MouseEvent event) {
+    void onClickSelectButton(MouseEvent event) {
 
+    	if(personList.size() < 2) return;
+    	
     	try {
-        	URL url = new File("src/application/view/SelectWindow.fxml").toURI().toURL();
+        	URL url = new File("src/application/view/SelectMenu.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(url);
             AnchorPane newPane = (AnchorPane)loader.load();
             Scene scene = new Scene(newPane);
 
+            Stage currWindow = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            
             SelectController controller = loader.getController();
-            controller.initializeData(personList);
+            controller.initializeData(personList, currWindow);
             
             Stage window = new Stage();
-            window.initModality(Modality.APPLICATION_MODAL);
             window.setScene(scene);
             window.showAndWait();
+            currWindow.show();
+          
             
         } catch (IOException e) {
         	
@@ -128,8 +133,6 @@ public class MenuController implements Initializable {
         button.setOnMouseClicked(new EventHandler<MouseEvent>(){	
         	
 			public void handle(MouseEvent event) {
-				
-				System.out.println("Clicked");
 				
 				menuPane.getChildren().remove(event.getTarget());
 				updateScreen(REMOVE);

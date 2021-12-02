@@ -1,6 +1,7 @@
 package application.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -8,27 +9,29 @@ import application.model.Person;
 import application.model.TicTacToe;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class TicTacToeController {
 	TicTacToe game = new TicTacToe();
-	private ArrayList<Person> personList, playerList;
-	
-	int count = 0;
+	private ArrayList<Person> playerList;
 	
     @FXML
     private Label ScoreHolder;
     
     @FXML
     private AnchorPane anchorPane;
+    
+    @FXML
+    private Button homeButton;
 
     @FXML
     private Label turnText;
@@ -104,31 +107,40 @@ public class TicTacToeController {
     void Fill22(MouseEvent event) {
     	processTurn(2,2);
     }
-    //shows a pop out that tells the user if there was a tie or if a user won
-    void showWinnerTie(String s) throws Exception {
+    //returns the user to the home screen
+    @FXML
+    void onClickHome(MouseEvent event) throws IOException {
     	
-    	URL url = new File("src/application/view/WinnerScreen.fxml").toURI().toURL();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(url);
-        anchorPane = (AnchorPane) loader.load();
-        Scene scene = new Scene(anchorPane);
-        Stage window = new Stage();
-        WinnerScreenController ws = loader.getController();
-        ws.initialize(s);
-        window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("Popup");
-        window.setScene(scene);
-        window.showAndWait();
+    	Stage currWindow = (Stage) ((Node)event.getSource()).getScene().getWindow();
+    	currWindow.close();
     }
+
     //arguement for initialize will be an arraylist of players, runs the game until arraylist has 1 player left which is the winner
-    
     void updateDisplay() {
 
     	resetBoard();
     	
     	//initialize the game with the users, users are passed in from the add players screen
     	if(playerList.size() == 1) {
-    		System.out.println("The winner is " + playerList.get(0).getName());
+    		try {
+			
+				URL url;
+				url = new File("src/application/view/Winning_Scene.fxml").toURI().toURL();
+	            FXMLLoader loader = new FXMLLoader();
+	            loader.setLocation(url);
+	            AnchorPane newPane = (AnchorPane)loader.load();
+	            Scene scene = new Scene(newPane);
+
+	            WinningSceneController controller = loader.getController();
+				controller.initializeData(playerList.get(0));
+
+	            Stage window = (Stage) anchorPane.getScene().getWindow();  
+	            window.setScene(scene);
+	            window.show();
+	            
+			} catch (IOException e) {
+					e.printStackTrace();
+			}
     	}
     	else {
     	game.initializeGame(playerList.get(0), playerList.get(1));
@@ -174,23 +186,11 @@ public class TicTacToeController {
     				ScoreHolder.setText("Score: P1 - " + game.showP1Score() + " P2 - " + game.showP2Score() + " Ties - " + game.showTies());
     				turnText.setText(playerList.get(0).getName() + " is the winner!");
     				playWinSound();
-    				try {
-						showWinnerTie("The winner is " + playerList.get(0).getName());
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
     				updateDisplay();
     			}
     			else if(game.checkTie()) {
     				ScoreHolder.setText("Score: P1 - " + game.showP1Score() + " P2 - " + game.showP2Score() + " Ties - " + game.showTies());
     				turnText.setText("Tie!");
-    				try {
-						showWinnerTie("A tie has occured!");
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
     				updateDisplay();
     			}
     			else {
@@ -209,23 +209,11 @@ public class TicTacToeController {
     				ScoreHolder.setText("Score: P1 - " + game.showP1Score() + " P2 - " + game.showP2Score() + " Ties - " + game.showTies());
     				turnText.setText(playerList.get(0).getName() + " is the winner!");
     				playWinSound();
-    				try {
-						showWinnerTie("The winner is " + playerList.get(0).getName());
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
     				updateDisplay();
     			}
     			else if(game.checkTie()) {
     				ScoreHolder.setText("Score: P1 - " + game.showP1Score() + " P2 - " + game.showP2Score() + " Ties - " + game.showTies());
     				turnText.setText("Tie!");
-    				try {
-						showWinnerTie("A tie has occured!");
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
     				updateDisplay();
     			}
     			else {
@@ -266,7 +254,7 @@ public class TicTacToeController {
     		Square22.setText(s);
     		break;
     	default:
-    		System.out.println("Error: Row and Column could not be resolved. Row: " + row + " Column: " + column);
+    		
     	}
     }
     //play sounds for winning and for inputting a move
@@ -286,16 +274,9 @@ public class TicTacToeController {
     }
     //initialize the person arraylist
     public void initializeData(ArrayList<Person> personList) {
-    	
     	this.playerList = new ArrayList<Person>();
-    	
-    	this.personList = personList;
-    	
-    	System.out.println(personList.size());
-    	
     	for(Person person: personList)
     		playerList.add(person);
-    	
     	updateDisplay();
     }
 
