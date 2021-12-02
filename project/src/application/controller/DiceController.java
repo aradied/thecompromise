@@ -1,11 +1,13 @@
 package application.controller;
+
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+
 import application.model.Game;
 import application.model.Person;
-import application.model.Rounds;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -23,13 +25,15 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.stage.Stage;
 import javafx.animation.AnimationTimer;
+import javafx.event.ActionEvent;
 
 public class DiceController {
 	private Spin clock;
+	private ArrayList<Person> personList, playerList;
 	Game dice;
-	Rounds rounds;
 	
 	@FXML
 	private AnchorPane mainPane;
@@ -109,12 +113,7 @@ public class DiceController {
 				count++;
 				if(count > MAX_SPIN) {
 					clock.stop();
-					try {
-						roll();
-					} catch (Throwable e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					roll();
 					count = 0;
 				}
 			}
@@ -123,13 +122,13 @@ public class DiceController {
 		
 	}
 	
-	public void startRound(String person1, String person2) throws Throwable {
+	public void startRound(Person person1, Person person2) {
 		
 		clock = new Spin();
 		//dice = new Game("Player 1", "Player 2");
-		dice = new Game(person1, person2);
-		player1Text.setText(person1);
-		player2Text.setText(person2);
+		dice = new Game(person1.getName(), person2.getName());
+		player1Text.setText(person1.getName());
+		player2Text.setText(person2.getName());
 		
 		try {
 			setdieImage(dice.getDie().getTop());
@@ -137,28 +136,14 @@ public class DiceController {
 			e.printStackTrace();
 		}
 		
-		rollButton.setOnAction(event -> {
-			try {
-				roll();
-			} catch (Throwable e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		});
-		holdButton.setOnAction(event -> {
-			try {
-				hold();
-			} catch (Throwable e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		});
+		rollButton.setOnAction(event -> roll());
+		holdButton.setOnAction(event -> hold());
 		
 		update();
 	}
 
 	//Updating the text field with die rolled and which player is on current roll
-	public void update() throws Throwable {
+	public void update() {
 		
 		player1turn.setText("" + dice.getPlayer1().getTurnScore());
 		player1total.setText("" + dice.getPlayer1().getTotalScore());
@@ -177,27 +162,8 @@ public class DiceController {
 		
 		if(dice.GameOver()) {
 			
-			String loser = (dice.getCurrent() != dice.getPlayer1())? 
-							dice.getPlayer1().getName(): dice.getPlayer2().getName();
-		
-			if(rounds.nextRound(loser)) {
-				
-				URL url = new File("src/application/view/Winning_Scene.fxml").toURI().toURL();
-	            FXMLLoader loader = new FXMLLoader();
-	            loader.setLocation(url);
-	            AnchorPane newPane = (AnchorPane)loader.load();
-	            Scene scene = new Scene(newPane);
-
-	            WinningSceneController controller = loader.getController();
-	            controller.initializeData(rounds.getWinner());
-	   
-	            Stage window = (Stage) mainPane.getScene().getWindow();  
-	            window.setScene(scene);
-	            window.show();
-			}
-			
-			
-			startRound(rounds.getPlayer1(), rounds.getPlayer2());
+			title.setText("Game Over! " + dice.getCurrent().getName()+ " is the Winner!");
+			//startRound();
 		}
 		
 	}
@@ -214,28 +180,41 @@ public class DiceController {
 	}
 	
 	//Calling on action to set roll and update
-	private void roll() throws Throwable {
+	private void roll() {
 		
 		dice.roll();
 		update();
 	}
 	//calling on hold to save dice number
-	private void hold() throws Throwable {
+	private void hold() {
 		dice.hold();
 		update();
 	}
 	
-	@FXML
-	void onClickHome(MouseEvent event) throws IOException {
-    	
-    	Stage currWindow = (Stage) ((Node)event.getSource()).getScene().getWindow();
-    	currWindow.close();
-    }
+	public void Menu(ActionEvent event) throws IOException{
+		
+			// Fix
+		  URL url = new File("src/application/view/Menu.fxml").toURI().toURL();
+          AnchorPane root = (AnchorPane)FXMLLoader.load(url);
+          Scene scene = new Scene(root,800,800);
+          Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+      	  stage.setScene(scene);
+      	  stage.show();
 
-	public void initializeData(ArrayList<Person> personList) throws Throwable {
+	}
+	
+	public void initializeData(ArrayList<Person> personList) {
     	
-		rounds = new Rounds(personList);
-    	startRound(rounds.getPlayer1(), rounds.getPlayer2());
+    	this.playerList = new ArrayList<Person>();
+    	
+    	this.personList = personList;
+    	
+    	System.out.println(personList.size());
+    	
+    	for(Person person: personList)
+    		playerList.add(person);
+    	
+    	startRound(playerList.get(0), playerList.get(1));
     }
 
 }
